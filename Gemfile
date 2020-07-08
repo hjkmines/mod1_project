@@ -16,3 +16,5 @@ gem "json", "~> 2.3"
 gem "rest-client", "~> 2.1"
 
 gem "news-api", "~> 0.2.0"
+
+gem "dotenv", "~> 2.7"

@@ -1,5 +1,6 @@
 require 'bundler/setup'
 Bundler.require
-require 'pry'
+require 'rest-client'
+require 'json'
 
 require_all 'lib'
