@@ -58,34 +58,34 @@ class Article < ActiveRecord::Base
   end 
 
   def self.random 
-  key = ENV["API_KEY"]
-  response = RestClient.get ("https://newsapi.org/v2/top-headlines?country=us&apiKey=" + "#{key}")
-  parsed_response = JSON.parse(response)
-  random = parsed_response["articles"].sample
-  puts random["title"]
-  puts ""
-  puts "If you would like to read more, type 'more'."
-  user_selected_input = gets.strip.to_s
-  if user_selected_input == "more" || user_selected_input == "More"
-    puts ""
+    key = ENV["API_KEY"]
+    response = RestClient.get ("https://newsapi.org/v2/top-headlines?country=us&apiKey=" + "#{key}")
+    parsed_response = JSON.parse(response)
+    random = parsed_response["articles"].sample
     puts random["title"]
     puts ""
-    puts random["description"]
-    puts ""
-    puts random["url"]
-    puts ""
-    puts "Want to save this story? Enter (yes or no)"
-    user_response = gets.strip 
-    if user_response == "Y" || user_response == "y" || user_response == "Yes" || user_response == "yes"
+    puts "If you would like to read more, type 'more'."
+    user_selected_input = gets.strip.to_s
+      if user_selected_input == "more" || user_selected_input == "More"
+        puts ""
+        puts random["title"]
+        puts ""
+        puts random["description"]
+        puts ""
+        puts random["url"]
+        puts ""
+        puts "Want to save this story? Enter (yes or no)"
+        user_response = gets.strip 
+          if user_response == "Y" || user_response == "y" || user_response == "Yes" || user_response == "yes"
           article = Article.create(title: random["title"], summary: random["description"], category: nil, time_stamp: Time.now)
           # $user.articles << article
           Feed.create(user_id: $user.id, article_id: article.id)
-    else 
-      Cli.home_or_exit
-    end 
-  end
+      else 
+        Cli.home_or_exit
+      end 
+    end
   puts ""
-  Cli.home_or_exit
-end 
+    Cli.home_or_exit
+  end 
 end 
 
