@@ -49,6 +49,7 @@ class Cli
       puts ""
       Cli.home_or_exit
     elsif user_choice == 8 
+      puts ""
       Article.random
       puts ""
       Cli.home_or_exit
