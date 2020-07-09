@@ -66,7 +66,7 @@ class Cli
         puts ""
         puts "#{counter}. #{article.title}" 
         counter += 1
-      end.colorize(:green)    
+      end
       puts ""
       Cli.home_or_exit
     else 

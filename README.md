@@ -1,71 +1,89 @@
-# Mod 1 ActiveRecord Starter Repo
+# What's Happening?
+> Your new favorite way to get today's top headlines!
 
-In `config/database.yml`, you can change the name of the database from `db/cats.sqlite3` to whatever reflects your project. For example: `db/notes.sqlite3`. Doesn't really matter what you call the db. 
+## Table of contents
+* [General info](#general-info)
+* [Intro Video](#intro-video)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
+* [License](#license)
 
+## General info
+What's Happening is a CLI application that allows the user to search today's top news headlines by catagory, receive a random headline, link to the web to read full articles, and even save articles for later. 
 
+Dive in and find out What's Happening today!
 
-## ActiveRecord Methods
-These common ActiveRecord methods will help you interact with your database. Please refer to the ActiveRecord
-docs for what they do and how to use them. (If the docs talk about Rails, that is ok! ActiveRecord works very
- similar with or without Rails.)
+## Intro Video
+[What's Happening on YouTube](https://www.youtube.com/OUR-LINK-NEEDED)
+
+## Technologies
+* Ruby - version 2.6.1
+* ActiveRecord - version 6.0
+* Sinatra - version 2.0
+* Sinatra-activerecord - version 2.0
+* SQLite3 - version 1.4
+* JSON - version 2.3
+* Rest-Client - version 2.1
+* TTY-Font - version 0.5.0
+* Colorize - version 0.8.1
+
+## Setup
+To try out this project: 
+1. Open an account with https://newsapi.org/
+1. Clone the GitHub repository locally to your computer
+1. In the command line, navigate to the root directory of this repository, and enter the following: 
+  $ touch .env 
+1. Navigate to the .env folder, and paste in the following: 
+  export API_KEY=YOUR_API_KEY_HERE (e.g. export API_KEY=15151515)
+1. Now save all files, on Windows: (start + alt + s), on Macs: (command + alt +s)
+1. Run the following code in the command line while being in the most root folder of this project: 
+```ruby
+ruby runner.rb
 ```
-  .create (.new, .save)
-  .all
-  .count
-  .find
-  .find_by
-  .where
+
+## Code Examples
+```ruby
+def welcome  
+  font = TTY::Font.new(:doom)
+  puts font.write("What's  Happening?")
+  puts "Hello! What is your name?".colorize(:yellow)
+  $user_name = gets.strip  
+  $user = User.create(name: $user_name)
+  Cli.choose_category
+end 
 ```
 
-#### Notes
-
-*Remember*, any model that will have a corresponding table in the database needs to inherit from `ActiveRecord::Base`
-ex:
+```ruby
+def self.top_five(stories, category)
+  puts "Here are today's top 5 #{category} stories:".colorize(:yellow)
+  counter = 1 
+  result = stories["articles"].take(5).each do |key, value|
+  puts "#{counter}. " + "#{key["title"]}"
+  counter += 1
+end  
 ```
-class Cat < ActiveRecord::Base
-  # customer methods defined here
-end
-```
-
-- To view database, you can run `sqlite3 db/cats.db`, then can run `.schema` or `.tables` and can run any SQL commands. (Don't need to do this anymore though! ActiveRecord gives us a schema file!)
 
 
-### Steps to setup Ruby app with activerecord
-(New for ActiveRecord 6.0)
+## Features
+* Browse today's top headlines by category
+* Receive a random headline
+* See more info on any headline (title, summary, link)
+* Click on a link to open up the full article on the web
+* Add articles to your favorites list
 
+## Status
+Project is: finished with option to expand functionality and DRY out code.
 
-## The following steps are already done for you in this boiler plate repo. 
-## The steps below are provided to you as a reference only. 
-## You're not expected to memorize this (please don't).
+## Inspiration
+The inspiration for What's Happening came from our desire to quickly and easily see what's going on in the world today. We set out to build an application that would be fun, interactive, and highly practical. We hope you find using What's Happening as enjoyable and helpful as we do!
 
+## Contact
+Created by [Tony Kim](https://www.linkedin.com/in/hyung-kim/) and [Matt Long](https://www.linkedin.com/in/mattlong34/)
 
-1. In root of project, run `bundle init`
-1. Add gems: 
-  `bundle add activerecord pry sinatra, sinatra-activerecord rake sqlite3 require_all`
-  run `bundle install`
-1. mkdir config and lib 
-1. mkdir lib/models
-1. touch config/environment.rb config/database.yml
-1. Create your model files and models (make sure to have your models inherit from ActiveRecord::Base)
-1. In config/environment.rb:
-```
-  require 'bundler/setup'
-  Bundler.require
+Feel free to contact us! 
 
-  require_all 'lib'
-```
-1. In config/database.yml:
-  ```
-  development:
-    adapter: sqlite3
-    database: db/cats.sqlite3
-  ```
-1. Touch Rakefile - require ‘config/environment.rb’ and require_relative ‘sinatra/activerecord/rake’ 
-1. Run rake -T to make sure we have access to raketasks
-1. Run `rake db:create_migration NAME=create_cats_table` (will create the db folder if it doesn’t already exist) and will add the migration file to db/migration
-1. Write migration file, then run `rake db:migrate`
-1. Then can see schema in file structure, can also drop into sqlite3 cats.db to see the tables and schema, but don’t really need to do that anymore. *Review rollback here*
-1. Create seeds in db/seeds.rb and run `rake db:seed`
-1. Now can put a pry in environment.rb to run <ModelName>.all and see your seeds.
-
-Make sure your models inherit from `ActiveRecord::Base`
+## License
+[Click to view](https://github.com/hjkmines/mod1_project/blob/master/LICENSE)
