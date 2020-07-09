@@ -17,7 +17,7 @@ What's Happening is a CLI application that allows the user to search today's top
 Dive in and find out What's Happening today!
 
 ## Intro Video
-[What's Happening on YouTube](https://www.youtube.com/OUR-LINK-NEEDED)
+[What's Happening on YouTube](https://www.youtube.com/watch?v=CRj0Leo-Ozw) 
 
 ## Technologies
 * Ruby - version 2.6.1
@@ -38,6 +38,7 @@ To try out this project:
   $ touch .env 
 1. Navigate to the .env folder, and paste in the following: 
   export API_KEY=YOUR_API_KEY_HERE (e.g. export API_KEY=15151515)
+1. In the command of the root directory of the project folder, run $ rake db:migrate
 1. Now save all files, on Windows: (start + alt + s), on Macs: (command + alt +s)
 1. Run the following code in the command line while being in the most root folder of this project: 
 ```ruby
