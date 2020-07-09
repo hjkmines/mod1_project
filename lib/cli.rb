@@ -1,6 +1,8 @@
 class Cli
 
   def welcome  
+      font = TTY::Font.new(:doom)
+      puts font.write("What's  Happening?")
       puts "Hello! What is your name?"
       $user_name = gets.strip  
       $user = User.create(name: $user_name)
