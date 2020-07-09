@@ -1,10 +1,10 @@
 class Cli
 
-  def welcome 
-    puts "Hello! What is your name?"
-    $user_name = gets.strip  
-    $user = User.create(name: $user_name)
-    Cli.choose_category
+  def welcome  
+      puts "Hello! What is your name?"
+      $user_name = gets.strip  
+      $user = User.create(name: $user_name)
+      Cli.choose_category
   end 
   
   def self.choose_category 
@@ -56,6 +56,8 @@ class Cli
     elsif user_choice == 9 
       puts ""
       puts "#{$user_name}, here are your saved articles:"
+      puts ""
+      # puts "If you want to remove a article, enter the number for the article to be removed"
       counter = 1
       puts ""
       $user.articles.each do |article|

@@ -1,7 +1,7 @@
 require 'news-api'
 require 'dotenv/load'
 
-class Article < ActiveRecord::Base 
+class Article < ActiveRecord::Base
   has_many :feeds 
   has_many :users, through: :feeds
 
