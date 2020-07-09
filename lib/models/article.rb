@@ -15,7 +15,7 @@ class Article < ActiveRecord::Base
 
   def self.top_five(stories, category)
     puts ""
-    puts "Here are today's top 5 #{category} stories:"
+    puts "Here are today's top 5 #{category} stories:".colorize(:yellow)
       counter = 1 
       result = stories["articles"].take(5).each do |key, value|
         puts "#{counter}. " + "#{key["title"]}"
@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
       end  
     puts ""
     # puts "If you would like to read more, enter the number next to your chosen headline."
-    puts "Type the number next to the headline you would like to read more about, or type '0' to go back."
+    puts "Type the number next to the headline you would like to read more about, or type '0' to go back.".colorize(:yellow)
     
     user_selected_input = gets.strip.to_i 
     puts ""
@@ -38,20 +38,20 @@ class Article < ActiveRecord::Base
             puts ""
             puts article["url"]
             puts ""
-            puts "Want to save this story? Enter (Yes/No)"
+            puts "Want to save this story? Enter (Yes/No)".colorize(:yellow)
               user_response = gets.strip 
                 if user_response == "Y" || user_response == "y" || user_response == "Yes" || user_response == "yes"
                   article = Article.create(title: article["title"], summary: article["description"], category: category, time_stamp: Time.now)
                   $user.articles << article 
                   puts ""
-                  puts "Article has been saved!"
+                  puts "Article has been saved!".colorize(:yellow)
                 else 
                   Cli.home_or_exit
                 end 
           end 
         end 
     else 
-      puts "Sorry, I didn't understand that. Please try again."
+      puts "Sorry, I didn't understand that. Please try again.".colorize(:yellow)
       Article.categories(category)
     end 
       Cli.home_or_exit
@@ -64,7 +64,7 @@ class Article < ActiveRecord::Base
     random = parsed_response["articles"].sample
     puts random["title"]
     puts ""
-    puts "If you would like to read more, type 'more'."
+    puts "If you would like to read more, type 'more'.".colorize(:yellow)
     user_selected_input = gets.strip.to_s
       if user_selected_input == "more" || user_selected_input == "More"
         puts ""
@@ -74,7 +74,7 @@ class Article < ActiveRecord::Base
         puts ""
         puts random["url"]
         puts ""
-        puts "Want to save this story? Enter (yes or no)"
+        puts "Want to save this story? Enter (yes or no)".colorize(:yellow)
         user_response = gets.strip 
           if user_response == "Y" || user_response == "y" || user_response == "Yes" || user_response == "yes"
           article = Article.create(title: random["title"], summary: random["description"], category: nil, time_stamp: Time.now)

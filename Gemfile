@@ -22,3 +22,4 @@ gem "dotenv", "~> 2.7"
 gem "tty-spinner", "~> 0.9.3"
 
 gem "tty-font", "~> 0.5.0"
+gem "colorize", "~> 0.8.1"

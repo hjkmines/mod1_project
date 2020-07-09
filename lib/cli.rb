@@ -3,7 +3,7 @@ class Cli
   def welcome  
       font = TTY::Font.new(:doom)
       puts font.write("What's  Happening?")
-      puts "Hello! What is your name?"
+      puts "Hello! What is your name?".colorize(:yellow)
       $user_name = gets.strip  
       $user = User.create(name: $user_name)
       Cli.choose_category
@@ -11,7 +11,7 @@ class Cli
   
   def self.choose_category 
     puts ""
-    puts "Welcome #{$user_name}, what would you like to read about? Enter the number next to your chosen category."
+    puts "Welcome #{$user_name}, what would you like to read about? Enter the number next to your chosen category.".colorize(:yellow)
     categories = ["1. Business", "2. Entertainment", "3. General", "4. Health", "5. Science", "6. Sports", "7. Technology", "8. Pick a Random Headline for Me", "9. View My Saved Articles"]
     puts categories
     user_choice = gets.strip.to_i
@@ -57,7 +57,7 @@ class Cli
       Cli.home_or_exit
     elsif user_choice == 9 
       puts ""
-      puts "#{$user_name}, here are your saved articles:"
+      puts "#{$user_name}, here are your saved articles:".colorize(:yellow)
       puts ""
       # puts "If you want to remove a article, enter the number for the article to be removed"
       counter = 1
@@ -66,18 +66,18 @@ class Cli
         puts ""
         puts "#{counter}. #{article.title}" 
         counter += 1
-      end    
+      end.colorize(:green)    
       puts ""
       Cli.home_or_exit
     else 
-      puts "Sorry, I didn't understand that. Please try again."
+      puts "Sorry, I didn't understand that. Please try again.".colorize(:yellow)
       Cli.choose_category
     end 
 
   end
 
   def self.home_or_exit 
-    puts "Do you wish to go back to the home page or exit the program? Enter (Home or Exit)"
+    puts "Do you wish to go back to the home page or exit the program? Enter (Home or Exit)".colorize(:yellow)
     user_response = gets.strip 
     if user_response == "H" || user_response == "h" || user_response == "Home" || user_response == "home"
       Cli.choose_category
@@ -85,7 +85,7 @@ class Cli
       user_response == "exit" || user_response == "Exit"
       exit 
     else
-      puts "Sorry, I didn't understand that. Please try again."
+      puts "Sorry, I didn't understand that. Please try again.".colorize(:yellow)
       Cli.home_or_exit
     end 
   end 
