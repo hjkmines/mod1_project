@@ -12,7 +12,7 @@ class Cli
   def self.choose_category 
     puts ""
     puts "Welcome #{$user_name}, what would you like to read about? Enter the number next to your chosen category.".colorize(:yellow)
-    categories = ["1. Business", "2. Entertainment", "3. General", "4. Health", "5. Science", "6. Sports", "7. Technology", "8. Pick a Random Headline for Me", "9. View My Saved Articles"]
+    categories = ["", "CATEGORIES:".colorize(:green), " ", "1. Business", "2. Entertainment", "3. General", "4. Health", "5. Science", "6. Sports", "7. Technology", "8. Pick a Random Headline for Me", "", "OPTIONS:".colorize(:green), "", "9. View My Saved Articles", "10. Delete an article from my profile"]
     puts categories
     user_choice = gets.strip.to_i
     if user_choice == 1 
@@ -60,6 +60,7 @@ class Cli
       puts "#{$user_name}, here are your saved articles:".colorize(:yellow)
       puts ""
       counter = 1
+      $user.reload
       $user.articles.each do |article|
         puts ""
         puts "#{counter}. #{article.title}" 
@@ -67,29 +68,30 @@ class Cli
       end
       puts ""
       Cli.home_or_exit
-    # elsif user_choice == 10
-    #   puts "Enter the number for the article to be removed"
-    #   puts ""
-    #   counter = 1
-    #   $user.articles.each do |article|
-    #     puts ""
-    #     puts "#{counter}. #{article.title}" 
-    #     counter += 1
-    #   end 
-    #   response = gets.strip.to_i
-    #   $user.articles.each do |article|
-    #     if $user.articles.index(article) == (response - 1) 
-    #       Feed.find_by(article_id: article.id).destroy
-    #       article.destroy  
-    #       $user.articles.delete_at(response - 1)
-    #       puts "Your article has been removed from your profile!"
-    #       puts "" 
-    #       Cli.choose_category
-    #     else 
-    #       puts "Hmm... we don't have that article saved in your profile"
-    #       Cli.choose_category
-    #     end 
-    #   end 
+    elsif user_choice == 10
+      puts ""
+      puts "Enter the number for the article to be removed".colorize(:yellow)
+      puts ""
+      counter = 1
+      $user.reload
+      $user.articles.each do |article|
+        puts ""
+        puts "#{counter}. #{article.title}" 
+        counter += 1
+      end 
+      response = (gets.strip.to_i - 1) 
+      $user.articles.each do |article|
+        if $user.articles.index(article) == response  
+          Feed.find_by(article_id: article.id).destroy
+          article.destroy  
+          $user.reload 
+          puts ""
+          puts "Your article has been removed from your profile!".colorize(:yellow)
+          puts ""
+          Cli.home_or_exit
+        end 
+      end 
+      Cli.home_or_exit
     else 
       puts "Sorry, I didn't understand that. Please try again.".colorize(:yellow)
       Cli.choose_category

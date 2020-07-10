@@ -31,10 +31,13 @@ class Article < ActiveRecord::Base
     elsif user_selected_input == 1 || user_selected_input == 2 || user_selected_input == 3 || user_selected_input == 4 || user_selected_input == 5
       result.each do |article| 
           if result.index(article) == (user_selected_input - 1)
+            puts "Subject:".colorize(:green) 
             puts article["title"]
             puts ""
+            puts "Description:".colorize(:green) 
             puts article["description"]
             puts ""
+            puts "Link to full article:".colorize(:green) 
             puts article["url"]
             puts ""
             puts "Want to save this story? Enter (Yes/No)".colorize(:yellow)
@@ -45,6 +48,7 @@ class Article < ActiveRecord::Base
                   Feed.create(user_id: $user.id, article_id: article.id)
                   puts ""
                   puts "Article has been saved!".colorize(:yellow)
+                  puts ""
                 else 
                   Cli.home_or_exit
                 end 

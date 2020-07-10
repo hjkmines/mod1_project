@@ -35,6 +35,7 @@ To try out this project:
 1. Open an account with https://newsapi.org/
 1. Clone the GitHub repository locally to your computer
 1. In the command line, navigate to the root directory of this repository, and enter the following: 
+  $ bundle install 
   $ touch .env 
 1. Navigate to the .env folder, and paste in the following: 
   export API_KEY=YOUR_API_KEY_HERE (e.g. export API_KEY=15151515)
@@ -69,11 +70,13 @@ end
 
 
 ## Features
+* Full CRUD application 
 * Browse today's top headlines by category
 * Receive a random headline
 * See more info on any headline (title, summary, link)
 * Click on a link to open up the full article on the web
 * Add articles to your favorites list
+* Remove articles from your favorates list
 
 ## Status
 Project is: finished with option to expand functionality and DRY out code.
