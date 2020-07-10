@@ -39,7 +39,8 @@ To try out this project:
   $ touch .env 
 1. Navigate to the .env folder, and paste in the following: 
   export API_KEY=YOUR_API_KEY_HERE (e.g. export API_KEY=15151515)
-1. In the command of the root directory of the project folder, run $ rake db:migrate
+1. In the command of the root directory of the project folder, run: 
+  $ rake db:migrate
 1. Now save all files, on Windows: (start + alt + s), on Macs: (command + alt +s)
 1. Run the following code in the command line while being in the most root folder of this project: 
 ```ruby
