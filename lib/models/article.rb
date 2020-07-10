@@ -22,7 +22,6 @@ class Article < ActiveRecord::Base
         counter += 1
       end  
     puts ""
-    # puts "If you would like to read more, enter the number next to your chosen headline."
     puts "Type the number next to the headline you would like to read more about, or type '0' to go back.".colorize(:yellow)
     
     user_selected_input = gets.strip.to_i 
@@ -79,7 +78,6 @@ class Article < ActiveRecord::Base
         user_response = gets.strip 
           if user_response == "Y" || user_response == "y" || user_response == "Yes" || user_response == "yes"
           article = Article.create(title: random["title"], summary: random["description"], category: nil, time_stamp: Time.now)
-          # $user.articles << article
           Feed.create(user_id: $user.id, article_id: article.id)
       else 
         Cli.home_or_exit
