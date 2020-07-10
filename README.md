@@ -12,12 +12,12 @@
 * [License](#license)
 
 ## General info
-What's Happening is a CLI application that allows the user to search today's top news headlines by catagory, receive a random headline, link to the web to read full articles, and even save articles for later. 
+What's Happening is a CLI application that allows the user to search today's top news headlines by category, receive a random headline, link to the web to read full articles, and even save and remove articles from your favorites list. 
 
 Dive in and find out What's Happening today!
 
 ## Intro Video
-[What's Happening on YouTube](https://www.youtube.com/watch?v=CRj0Leo-Ozw) 
+[What's Happening on YouTube](https://www.youtube.com/watch?v=cR0qsPMTY5E)
 
 ## Technologies
 * Ruby - version 2.6.1

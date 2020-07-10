@@ -70,7 +70,7 @@ class Cli
       Cli.home_or_exit
     elsif user_choice == 10
       puts ""
-      puts "Enter the number for the article to be removed".colorize(:yellow)
+      puts "Enter the number next to the article you want to remove:".colorize(:yellow)
       puts ""
       counter = 1
       $user.reload
@@ -100,7 +100,7 @@ class Cli
   end
 
   def self.home_or_exit 
-    puts "Do you wish to go back to the home page or exit the program? Enter (Home or Exit)".colorize(:yellow)
+    puts "Do you want to go back to the home page or exit the program? Enter (Home or Exit)".colorize(:yellow)
     user_response = gets.strip 
     if user_response == "H" || user_response == "h" || user_response == "Home" || user_response == "home"
       Cli.choose_category
