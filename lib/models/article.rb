@@ -42,7 +42,8 @@ class Article < ActiveRecord::Base
               user_response = gets.strip 
                 if user_response == "Y" || user_response == "y" || user_response == "Yes" || user_response == "yes"
                   article = Article.create(title: article["title"], summary: article["description"], category: category, time_stamp: Time.now)
-                  $user.articles << article 
+                  # $user.articles << article 
+                  Feed.create(user_id: $user.id, article_id: article.id)
                   puts ""
                   puts "Article has been saved!".colorize(:yellow)
                 else 

@@ -59,9 +59,7 @@ class Cli
       puts ""
       puts "#{$user_name}, here are your saved articles:".colorize(:yellow)
       puts ""
-      # puts "If you want to remove a article, enter the number for the article to be removed"
       counter = 1
-      puts ""
       $user.articles.each do |article|
         puts ""
         puts "#{counter}. #{article.title}" 
@@ -69,6 +67,29 @@ class Cli
       end
       puts ""
       Cli.home_or_exit
+    # elsif user_choice == 10
+    #   puts "Enter the number for the article to be removed"
+    #   puts ""
+    #   counter = 1
+    #   $user.articles.each do |article|
+    #     puts ""
+    #     puts "#{counter}. #{article.title}" 
+    #     counter += 1
+    #   end 
+    #   response = gets.strip.to_i
+    #   $user.articles.each do |article|
+    #     if $user.articles.index(article) == (response - 1) 
+    #       Feed.find_by(article_id: article.id).destroy
+    #       article.destroy  
+    #       $user.articles.delete_at(response - 1)
+    #       puts "Your article has been removed from your profile!"
+    #       puts "" 
+    #       Cli.choose_category
+    #     else 
+    #       puts "Hmm... we don't have that article saved in your profile"
+    #       Cli.choose_category
+    #     end 
+    #   end 
     else 
       puts "Sorry, I didn't understand that. Please try again.".colorize(:yellow)
       Cli.choose_category
