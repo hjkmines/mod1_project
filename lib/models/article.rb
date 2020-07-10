@@ -71,6 +71,7 @@ class Article < ActiveRecord::Base
     puts "If you would like to read more, type 'more'.".colorize(:yellow)
     user_selected_input = gets.strip.to_s
       if user_selected_input == "more" || user_selected_input == "More"
+        puts ""
         puts "Subject:".colorize(:green) 
         puts random["title"]
         puts ""
